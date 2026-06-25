@@ -1,0 +1,69 @@
+{
+  "timestamp": "2026-06-24T23:01:57.124990",
+  "soh_best_model": "Gradient Boosting",
+  "soh_best_cv_score": 0.9999,
+  "soh_best_params": {
+    "learning_rate": 0.05,
+    "max_depth": 5,
+    "n_estimators": 200
+  },
+  "rul_best_model": "LightGBM",
+  "rul_best_cv_score": 0.984,
+  "rul_best_params": {
+    "learning_rate": 0.1,
+    "max_depth": 20,
+    "n_estimators": 200
+  },
+  "soh_features": [
+    "cycle",
+    "voltage_measured",
+    "current_measured",
+    "temperature_measured",
+    "voltage_charge",
+    "current_charge",
+    "capacity",
+    "internal_resistance",
+    "ambient_temperature",
+    "capacity_retention_rate",
+    "resistance_growth_rate",
+    "cycle_efficiency",
+    "degradation_rate",
+    "temperature_stress_score",
+    "battery_wear_index",
+    "avg_charge_temperature",
+    "avg_discharge_temperature",
+    "voltage_drop",
+    "cumulative_temp_stress"
+  ],
+  "rul_features": [
+    "cycle",
+    "voltage_measured",
+    "current_measured",
+    "temperature_measured",
+    "voltage_charge",
+    "current_charge",
+    "capacity",
+    "internal_resistance",
+    "ambient_temperature",
+    "capacity_retention_rate",
+    "resistance_growth_rate",
+    "cycle_efficiency",
+    "degradation_rate",
+    "temperature_stress_score",
+    "battery_wear_index",
+    "avg_charge_temperature",
+    "avg_discharge_temperature",
+    "voltage_drop",
+    "cumulative_temp_stress"
+  ],
+  "all_soh_scores": {
+    "Random Forest": 0.9998,
+    "XGBoost": 0.9998,
+    "Gradient Boosting": 0.9999
+  },
+  "all_rul_scores": {
+    "Random Forest": 0.9781,
+    "XGBoost": 0.9813,
+    "LightGBM": 0.984
+  }
+}
