@@ -12,15 +12,15 @@ import numpy as np
 import pandas as pd
 import os
 
-from src.model_evaluation import COLORS, _plotly_dark_layout
-from src.feature_engineering import engineer_features
+from model_evaluation import COLORS, _plotly_dark_layout
+from feature_engineering import engineer_features
 
 
 def _load_battery_data() -> pd.DataFrame:
     """Load and engineer features for the battery dataset."""
     data_path = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-        "data", "battery_data.csv"
+        os.path.dirname(os.path.abspath(__file__)),
+        "battery_data.csv"
     )
     if not os.path.exists(data_path):
         return None

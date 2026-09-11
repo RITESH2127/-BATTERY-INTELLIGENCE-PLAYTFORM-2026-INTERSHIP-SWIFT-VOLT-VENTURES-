@@ -13,12 +13,12 @@ import joblib
 import os
 import json
 
-from src.utils import (
+from utils import (
     classify_risk, get_risk_color, get_risk_icon, get_maintenance_recommendations,
     calculate_confidence, RISK_CSS_CLASSES,
 )
-from src.model_evaluation import COLORS, _plotly_dark_layout
-from src.feature_engineering import RUL_FEATURES
+from model_evaluation import COLORS, _plotly_dark_layout
+from feature_engineering import RUL_FEATURES
 
 
 def _create_rul_gauge(rul_value: float, max_rul: float = 1000) -> go.Figure:
@@ -148,9 +148,7 @@ def _create_degradation_forecast(current_soh: float, rul: float,
 
 def _load_model_and_scaler():
     """Load the best RUL model and scaler."""
-    models_dir = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "models"
-    )
+    models_dir = os.path.dirname(os.path.abspath(__file__))
     metadata_path = os.path.join(models_dir, "model_metadata.json")
 
     if not os.path.exists(metadata_path):
@@ -184,8 +182,7 @@ def render():
     model, scaler, model_name = _load_model_and_scaler()
     if model is None:
         st.warning(
-            "⚠️ Models not trained yet. Please run the training pipeline first.\n\n"
-            "```bash\ncd battery-intelligence-platform\npython -c \"from src.model_training import train_all_models; train_all_models()\"\n```"
+            "⚠️ Models not trained yet. Please run the training pipeline first."
         )
         return
 

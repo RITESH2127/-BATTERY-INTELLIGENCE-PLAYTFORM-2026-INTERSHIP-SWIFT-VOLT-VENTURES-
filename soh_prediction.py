@@ -13,12 +13,12 @@ import joblib
 import os
 import json
 
-from src.utils import (
+from utils import (
     classify_risk, get_risk_color, get_risk_icon, get_maintenance_recommendations,
     calculate_confidence, RISK_CSS_CLASSES,
 )
-from src.model_evaluation import COLORS, _plotly_dark_layout
-from src.feature_engineering import SOH_FEATURES
+from model_evaluation import COLORS, _plotly_dark_layout
+from feature_engineering import SOH_FEATURES
 
 
 def _create_soh_gauge(soh_value: float) -> go.Figure:
@@ -74,9 +74,7 @@ def _create_soh_gauge(soh_value: float) -> go.Figure:
 
 def _load_model_and_scaler():
     """Load the best SoH model and scaler from saved artifacts."""
-    models_dir = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "models"
-    )
+    models_dir = os.path.dirname(os.path.abspath(__file__))
     metadata_path = os.path.join(models_dir, "model_metadata.json")
 
     if not os.path.exists(metadata_path):
@@ -110,8 +108,7 @@ def render():
     model, scaler, model_name = _load_model_and_scaler()
     if model is None:
         st.warning(
-            "⚠️ Models not trained yet. Please run the training pipeline first.\n\n"
-            "```bash\ncd battery-intelligence-platform\npython -c \"from src.model_training import train_all_models; train_all_models()\"\n```"
+            "⚠️ Models not trained yet. Please run the training pipeline first."
         )
         return
 
@@ -147,8 +144,7 @@ def render():
     with col_result:
         if submitted:
             # Build feature vector
-            # We need to compute engineered features from the raw inputs
-            initial_capacity = 2.0  # assumed nominal
+            initial_capacity = 2.0
             capacity_retention_rate = capacity / initial_capacity
             initial_resistance = 0.022
             resistance_growth_rate = (resistance - initial_resistance) / initial_resistance
