@@ -11,11 +11,11 @@ import plotly.express as px
 import numpy as np
 import pandas as pd
 
-from src.utils import (
+from utils import (
     generate_fleet_data, classify_risk, get_risk_color, get_risk_icon,
     get_maintenance_recommendations, RISK_COLORS,
 )
-from src.model_evaluation import COLORS, _plotly_dark_layout
+from model_evaluation import COLORS, _plotly_dark_layout
 
 
 def style_status(val):
@@ -54,7 +54,7 @@ def render():
         st.metric("⚠️ Warning", warning)
     with k4:
         critical = status_counts.get("Critical", 0)
-        st.metric("🔴 Critical", critical)
+        st.metric(🔴 Critical", critical)
 
     st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 
@@ -105,7 +105,7 @@ def render():
 
         fig_hist = go.Figure()
         fig_hist.add_trace(go.Histogram(
-            x=fleet["SoH (%)"],
+            x=fleet["SoH (%)\n"],
             nbinsx=15,
             marker=dict(
                 color=COLORS["accent"],
