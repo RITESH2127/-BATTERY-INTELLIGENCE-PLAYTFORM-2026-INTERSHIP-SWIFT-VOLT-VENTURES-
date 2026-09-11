@@ -7,6 +7,10 @@ Multi-page navigation with dark theme and premium styling.
 
 import streamlit as st
 import os
+import sys
+
+# ─── Add current directory to path for imports ─── #
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 # ─── Page Configuration ─── #
 st.set_page_config(
@@ -17,7 +21,7 @@ st.set_page_config(
 )
 
 # ─── Load Custom CSS ─── #
-css_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets", "style.css")
+css_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "style.css")
 if os.path.exists(css_path):
     with open(css_path, "r") as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
@@ -68,8 +72,7 @@ with st.sidebar:
     )
 
     # Model status
-    models_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models")
-    metadata_path = os.path.join(models_dir, "model_metadata.json")
+    metadata_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "model_metadata.json")
     if os.path.exists(metadata_path):
         import json
         with open(metadata_path, "r") as f:
@@ -117,25 +120,25 @@ with st.sidebar:
 
 # ─── Page Routing ─── #
 if page == "🏠 Home Dashboard":
-    from dashboard import home
+    import home
     home.render()
 
 elif page == "🔋 SoH Prediction":
-    from dashboard import soh_prediction
+    import soh_prediction
     soh_prediction.render()
 
 elif page == "🔄 RUL Prediction":
-    from dashboard import rul_prediction
+    import rul_prediction
     rul_prediction.render()
 
 elif page == "📊 Analytics":
-    from dashboard import analytics
+    import analytics
     analytics.render()
 
 elif page == "🧠 Explainable AI":
-    from dashboard import explainability_dashboard
+    import explainability_dashboard
     explainability_dashboard.render()
 
 elif page == "🚗 Fleet Monitoring":
-    from dashboard import fleet_monitoring
+    import fleet_monitoring
     fleet_monitoring.render()
