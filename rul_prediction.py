@@ -161,7 +161,7 @@ def _load_model_and_scaler():
         if not model_file.is_file() or not scaler_file.is_file():
             return None, None, None
         return joblib.load(model_file), joblib.load(scaler_file), best_name
-    except (OSError, json.JSONDecodeError, ValueError, TypeError):
+    except Exception:
         return None, None, None
 
 
