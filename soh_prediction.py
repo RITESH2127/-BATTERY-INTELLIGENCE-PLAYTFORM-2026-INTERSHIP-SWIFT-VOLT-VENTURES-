@@ -111,7 +111,7 @@ def render():
     if model is None:
         st.warning(
             "⚠️ Models not trained yet. Please run the training pipeline first.\n\n"
-            "```bash\ncd battery-intelligence-platform\npython -c \"from src.model_training import train_all_models; train_all_models()\"\n```"
+            "```bash\ncd battery-intelligence-platform\npython -c \"from model_training import train_all_models; train_all_models()\"\n```"
         )
         return
 
