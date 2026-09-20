@@ -54,7 +54,7 @@ def _load_models_and_data():
             "data": df,
             "metadata": metadata,
         }
-    except (OSError, ValueError, TypeError, KeyError, json.JSONDecodeError, pd.errors.ParserError):
+    except Exception:
         return None
 
 
