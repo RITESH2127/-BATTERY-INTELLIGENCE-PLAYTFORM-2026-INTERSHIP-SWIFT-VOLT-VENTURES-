@@ -1,4 +1,4 @@
-# ⚡ Battery Intelligence Platform
+#  Battery Intelligence Platform
 
 <p align="center">
   <strong>Explainable Machine Learning for EV Battery Health, Degradation & Remaining Useful Life</strong><br/>
@@ -20,19 +20,19 @@
 </p>
 
 <p align="center">
-  <a href="#-overview">Overview</a> •
-  <a href="#-capabilities">Capabilities</a> •
-  <a href="#-architecture">Architecture</a> •
-  <a href="#-quick-start">Quick Start</a> •
-  <a href="#-machine-learning-pipeline">ML Pipeline</a> •
-  <a href="#-results">Results</a> •
-  <a href="#-internship-alignment">Internship Alignment</a> •
-  <a href="#-engineering-standards">Engineering Standards</a>
+  <a href="#overview">Overview</a> |
+  <a href="#capabilities">Capabilities</a> |
+  <a href="#architecture">Architecture</a> |
+  <a href="#quick-start">Quick Start</a> |
+  <a href="#machine-learning-pipeline">ML Pipeline</a> |
+  <a href="#results">Results</a> |
+  <a href="#internship-alignment">Internship Alignment</a> |
+  <a href="#engineering-standards">Engineering Standards</a>
 </p>
 
 ---
 
-## 🎯 Overview
+## Overview
 
 **Battery Intelligence Platform** is an end-to-end machine-learning application for lithium-ion EV battery prognostics.
 
@@ -59,27 +59,27 @@ This project demonstrates the complete path from telemetry to an interactive ML 
 
 ---
 
-## ✨ Capabilities
+## Capabilities
 
 | Capability | Implementation |
 |---|---|
-| 🔋 SoH Prediction | Gradient Boosting regression |
-| 🔄 RUL Forecasting | LightGBM regression |
-| 🧪 Model Comparison | Random Forest, XGBoost, Gradient Boosting, LightGBM |
-| 🧠 Explainable AI | Global and local SHAP analysis |
-| 📊 Analytics | Capacity fade, thermal behavior, correlations and degradation trends |
-| 🚗 Fleet Monitoring | Deterministic simulated fleet dashboard |
-| 🛠️ Maintenance Layer | Rule-based condition and lifecycle recommendations |
-| 💾 Model Persistence | Joblib model and scaler artifacts |
-| 🎛️ Interactive UI | Multi-page Streamlit application |
-| 🐳 Containerization | Docker + Docker Compose |
-| ✅ Quality Automation | GitHub Actions + compile + smoke tests |
-| 📦 Reproducible Setup | Constrained dependency major versions |
-| 📚 Documentation | Technical report + engineering README |
+|  SoH Prediction | Gradient Boosting regression |
+|  RUL Forecasting | LightGBM regression |
+|  Model Comparison | Random Forest, XGBoost, Gradient Boosting, LightGBM |
+|  Explainable AI | Global and local SHAP analysis |
+|  Analytics | Capacity fade, thermal behavior, correlations and degradation trends |
+|  Fleet Monitoring | Deterministic simulated fleet dashboard |
+|  Maintenance Layer | Rule-based condition and lifecycle recommendations |
+|  Model Persistence | Joblib model and scaler artifacts |
+|  Interactive UI | Multi-page Streamlit application |
+|  Containerization | Docker + Docker Compose |
+|  Quality Automation | GitHub Actions + compile + smoke tests |
+|  Reproducible Setup | Constrained dependency major versions |
+|  Documentation | Technical report + engineering README |
 
 ---
 
-## 🧭 Dashboard
+## Dashboard
 
 The Streamlit application provides six operational views:
 
@@ -92,7 +92,7 @@ The Streamlit application provides six operational views:
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ### System architecture
 
@@ -209,7 +209,7 @@ The repository intentionally keeps the existing application modules at the proje
 
 ---
 
-## 🧪 Dataset
+## Dataset
 
 The demonstration workflow contains **2,748 simulated battery cycles** across four battery identifiers:
 
@@ -249,7 +249,7 @@ A production evaluation should include:
 
 ---
 
-## 🧮 Machine Learning Pipeline
+## Machine Learning Pipeline
 
 ### 1. Data preparation
 
@@ -330,7 +330,7 @@ SHAP is used to expose:
 
 ---
 
-## 📈 Results
+## Results
 
 The repository's stored model metadata records the following cross-validation results:
 
@@ -360,7 +360,7 @@ The next rigorous evaluation step is therefore **battery-level grouped and time-
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Option A — Local Python
 
@@ -418,7 +418,7 @@ PowerShell:
 
 ```powershell
 $env:APP_PORT = "8501"
-.scripts\run.ps1
+scripts\run.ps1
 ```
 
 ### Option C — Docker
@@ -460,7 +460,7 @@ The container exposes a Streamlit health endpoint and includes a Docker healthch
 
 ---
 
-## 🧰 Configuration
+## Configuration
 
 The default project requires **no secrets**.
 
@@ -492,7 +492,7 @@ The project intentionally does not require a database for its current demonstrat
 
 ---
 
-## 🏋️ Training from Scratch
+## Training from Scratch
 
 The repository includes the complete preprocessing and model-training pipeline.
 
@@ -527,7 +527,7 @@ For the fastest demo, use the persisted artifacts already included in the reposi
 
 ---
 
-## 🔬 Verification & Quality Gates
+## Verification & Quality Gates
 
 The repository now includes lightweight automated checks.
 
@@ -567,7 +567,7 @@ Workflow:
 
 ---
 
-## 🐳 Container Design
+## Container Design
 
 The Docker image follows a simple production-oriented pattern:
 
@@ -591,7 +591,7 @@ The container is deliberately stateless. Model artifacts and the demonstration d
 
 ---
 
-## 🔐 Security & Responsible Use
+## Security & Responsible Use
 
 This application loads serialized Joblib artifacts. Joblib ultimately relies on Python serialization mechanisms, so model files should be treated as **trusted application artifacts**.
 
@@ -614,7 +614,7 @@ The current application is a decision-support prototype, not a certified BMS or 
 
 ---
 
-## 🧱 Engineering Standards
+## Engineering Standards
 
 The refactored repository introduces the following engineering practices:
 
@@ -661,9 +661,9 @@ The refactored repository introduces the following engineering practices:
 
 ---
 
-## 🎓 Internship Alignment
+## Internship Alignment
 
-This repository was developed as part of a **Machine Learning Engineer Intern** context at **SwiftVolt Ventures India Private Limited**, with the project positioned around EV battery intelligence.
+This repository represents work completed during the **Machine Learning Engineer** internship at **Swift Volt Ventures**. The official internship certificate records the internship period as **June 16, 2026 to August 16, 2026**, and states that the internship requirements were successfully fulfilled.
 
 The engineering scope represented by this repository maps directly to the practical ML workflow expected from an internship project:
 
@@ -681,6 +681,23 @@ The engineering scope represented by this repository maps directly to the practi
 | Documentation | README + technical report |
 | Git/version control | GitHub repository + CI workflow |
 | Engineering discipline | Reproducible configuration and runtime tooling |
+
+### Internship Skill Matrix
+
+| Skill area | Repository evidence |
+|---|---|
+| Python | Modular application, preprocessing, training, analytics and inference modules |
+| Data preprocessing | Missing-value handling, IQR outlier mitigation, scaling and validation |
+| Feature engineering | Battery degradation, resistance, efficiency and thermal indicators |
+| Machine learning | Random Forest, XGBoost, Gradient Boosting and LightGBM |
+| Model selection | GridSearchCV-based hyperparameter search and model selection |
+| Model evaluation | R2-based cross-validation, regression metrics and documented limitations |
+| Explainable AI | SHAP global and local explanations |
+| Deployment | Streamlit application, Dockerfile and Docker Compose |
+| Testing | Smoke tests, pytest configuration and CI workflow |
+| Version control | GitHub repository, pull-request workflow and CI |
+| Documentation | Technical report, architecture diagrams and reproducible setup instructions |
+| Engineering discipline | Persisted artifacts, metadata, configuration and responsible-use documentation |
 
 ### Internship project progression
 
@@ -710,14 +727,30 @@ SwiftVolt Ventures operates in electric mobility and lithium-ion battery technol
 
 ---
 
-## 🏅 Credentials & Supporting Documents
+## Internship Certificate & Credentials
 
-The repository retains:
+The repository includes the original internship completion certificate issued by **Swift Volt Ventures**.
 
-- `ritesh.pdf` — repository-provided credential/document artifact.
-- `project_report.md` — detailed technical implementation and performance report.
+### Swift Volt Ventures Internship Certificate
 
-The author's public professional profile currently lists the following credentials:
+| Field | Certificate record |
+|---|---|
+| Candidate | **Ritesh Kumar** |
+| Institution | **Bharati Vidyapeeth College of Engineering, New Delhi** |
+| Role | **Machine Learning Engineer** |
+| Organization | **Swift Volt Ventures** |
+| Internship period | **June 16, 2026 to August 16, 2026** |
+| Certificate date | **August 16, 2026** |
+| Issued by | **Anurag, Director** |
+| Certificate status | **Internship requirements successfully fulfilled** |
+
+The certificate states that Ritesh Kumar successfully fulfilled the internship requirements as a Machine Learning Engineer at Swift Volt Ventures from June 16, 2026 to August 16, 2026. It also records that he demonstrated sincerity, courtesy, a result-oriented approach, adaptability, and effective contribution to the team.
+
+**Original certificate:** [View the internship certificate PDF](ritesh.pdf)
+
+### Publicly listed learning credentials
+
+The author's public professional profile also lists:
 
 | Credential | Issuer | Issued |
 |---|---|---|
@@ -725,13 +758,11 @@ The author's public professional profile currently lists the following credentia
 | AI Fluency for Students | Anthropic | March 2026 |
 | Machine Learning | GeeksforGeeks | January 2026 |
 | Machine Learning | GAIL (India) Limited | September 2025 |
-| SwiftVolt Ventures internship | SwiftVolt Ventures India Private Limited | 2026 |
 
-> Credential claims should always be verified against the issuing organization's credential record or the original certificate.
-
+Credential claims should be verified against the issuing organization's credential record or the original certificate.
 ---
 
-## 📊 Current Project Snapshot
+## Current Project Snapshot
 
 | Metric | Value |
 |---|---:|
@@ -748,7 +779,7 @@ The author's public professional profile currently lists the following credentia
 
 ---
 
-## 🛣️ Production Roadmap
+## Production Roadmap
 
 ### Phase 1 — Validation hardening
 
@@ -811,7 +842,7 @@ Potential production technologies include FastAPI, PostgreSQL/time-series storag
 
 ---
 
-## ⚠️ Known Limitations
+## Known Limitations
 
 ### Synthetic data
 
@@ -839,7 +870,7 @@ The application's confidence/stability display should not be interpreted as a ca
 
 ---
 
-## 🧠 Technical Design Principles
+## Technical Design Principles
 
 This project follows five core principles:
 
@@ -851,7 +882,7 @@ This project follows five core principles:
 
 ---
 
-## 📚 References
+## References
 
 1. NASA Prognostics Center of Excellence — battery aging resources.
 2. Lundberg, S. M. & Lee, S.-I. — *A Unified Approach to Interpreting Model Predictions*, NeurIPS 2017.
@@ -863,7 +894,7 @@ This project follows five core principles:
 
 ---
 
-## 📄 Project Documentation
+## Project Documentation
 
 For the detailed technical methodology, mathematical formulations, feature definitions, model grids, evaluation tables and engineering discussion, see:
 
@@ -871,7 +902,7 @@ For the detailed technical methodology, mathematical formulations, feature defin
 
 ---
 
-## 🔗 Useful Links
+## Useful Links
 
 - **Repository:** https://github.com/RITESH2127/-BATTERY-INTELLIGENCE-PLAYTFORM-2026-INTERSHIP-SWIFT-VOLT-VENTURES-
 - **Author GitHub:** https://github.com/RITESH2127
@@ -880,7 +911,7 @@ For the detailed technical methodology, mathematical formulations, feature defin
 
 ---
 
-## 👤 Author
+## Author
 
 <p align="center">
   <strong>Ritesh Kumar</strong><br/>
@@ -894,7 +925,7 @@ For the detailed technical methodology, mathematical formulations, feature defin
 
 ---
 
-## 📜 License
+## License
 
 This project is released under the **MIT License**.
 
@@ -903,6 +934,6 @@ See [LICENSE](LICENSE) for the complete license text.
 ---
 
 <p align="center">
-  <strong>⚡ Battery Intelligence Platform</strong><br/>
-  <sub>Machine Learning • Explainable AI • EV Battery Prognostics • Deployment Engineering</sub>
+  <strong>Battery Intelligence Platform</strong><br/>
+  <sub>Machine Learning | Explainable AI | EV Battery Prognostics | Deployment Engineering</sub>
 </p>
