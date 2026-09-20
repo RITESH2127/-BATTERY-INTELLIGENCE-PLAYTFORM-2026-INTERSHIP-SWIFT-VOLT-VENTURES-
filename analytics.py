@@ -14,18 +14,22 @@ import os
 
 from model_evaluation import COLORS, _plotly_dark_layout
 from feature_engineering import engineer_features
+from app_paths import DATA_PATH
 
 
 def _load_battery_data() -> pd.DataFrame:
-    """Load and engineer features for the battery dataset."""
-    data_path = os.path.join(
-        os.path.dirname(os.path.abspath(__file__))
-    )
-    if not os.path.exists(data_path):
+    """Load and engineer the bundled battery dataset."""
+    if not DATA_PATH.is_file():
         return None
-    df = pd.read_csv(data_path)
-    df = engineer_features(df)
-    return df
+    try:
+        df = pd.read_csv(DATA_PATH)
+        required = {"battery_id", "cycle", "capacity", "internal_resistance"}
+        missing = required.difference(df.columns)
+        if missing:
+            raise ValueError(f"Dataset is missing required columns: {sorted(missing)}")
+        return engineer_features(df)
+    except (OSError, ValueError, pd.errors.ParserError):
+        return None
 
 
 BATTERY_COLORS = {
