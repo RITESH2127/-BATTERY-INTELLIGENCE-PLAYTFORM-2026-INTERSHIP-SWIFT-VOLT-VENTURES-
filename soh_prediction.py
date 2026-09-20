@@ -19,6 +19,7 @@ from utils import (
 )
 from model_evaluation import COLORS, _plotly_dark_layout
 from feature_engineering import SOH_FEATURES
+from app_paths import METADATA_PATH, model_path, artifact_path
 
 
 def _create_soh_gauge(soh_value: float) -> go.Figure:
@@ -73,28 +74,21 @@ def _create_soh_gauge(soh_value: float) -> go.Figure:
 
 
 def _load_model_and_scaler():
-    """Load the best SoH model and scaler from saved artifacts."""
-    models_dir = os.path.join(
-        os.path.dirname(os.path.abspath(__file__)), "models"
-    )
-    metadata_path = os.path.join(models_dir, "model_metadata.json")
-
-    if not os.path.exists(metadata_path):
+    """Load the configured SoH model and scaler from the repository root."""
+    if not METADATA_PATH.is_file():
         return None, None, None
 
-    with open(metadata_path, "r") as f:
-        metadata = json.load(f)
-
-    best_name = metadata.get("soh_best_model", "XGBoost")
-    safe_name = best_name.lower().replace(" ", "_")
-    model_path = os.path.join(models_dir, f"soh_{safe_name}.joblib")
-    scaler_path = os.path.join(models_dir, "soh_scaler.joblib")
-
-    if os.path.exists(model_path) and os.path.exists(scaler_path):
-        model = joblib.load(model_path)
-        scaler = joblib.load(scaler_path)
-        return model, scaler, best_name
-    return None, None, None
+    try:
+        with METADATA_PATH.open("r", encoding="utf-8") as f:
+            metadata = json.load(f)
+        best_name = metadata.get("soh_best_model", "Gradient Boosting")
+        model_file = model_path("soh", best_name)
+        scaler_file = artifact_path("soh_scaler.joblib")
+        if not model_file.is_file() or not scaler_file.is_file():
+            return None, None, None
+        return joblib.load(model_file), joblib.load(scaler_file), best_name
+    except (OSError, json.JSONDecodeError, ValueError, TypeError):
+        return None, None, None
 
 
 def render():
