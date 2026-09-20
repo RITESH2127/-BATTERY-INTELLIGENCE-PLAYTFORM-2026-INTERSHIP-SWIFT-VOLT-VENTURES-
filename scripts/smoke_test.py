@@ -7,6 +7,9 @@ import pandas as pd
 
 from feature_engineering import engineer_features, SOH_FEATURES, RUL_FEATURES
 from utils import classify_risk, generate_fleet_data
+from soh_prediction import _load_model_and_scaler as load_soh_artifacts
+from rul_prediction import _load_model_and_scaler as load_rul_artifacts
+from explainability_dashboard import _load_models_and_data as load_xai_artifacts
 from app_paths import DATA_PATH, METADATA_PATH, model_path, artifact_path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -51,7 +54,14 @@ def main() -> None:
     assert classify_risk(95) == "Excellent"
     assert classify_risk(50) == "Critical"
 
-    print("Smoke test passed.")
+    soh_model, soh_scaler, soh_name = load_soh_artifacts()
+    rul_model, rul_scaler, rul_name = load_rul_artifacts()
+    xai_artifacts = load_xai_artifacts()
+    assert soh_model is not None and soh_scaler is not None and soh_name
+    assert rul_model is not None and rul_scaler is not None and rul_name
+    assert xai_artifacts is not None
+
+    print("Smoke test passed: dataset, paths, model artifacts, prediction loaders, and XAI loader are healthy.")
 
 
 if __name__ == "__main__":
