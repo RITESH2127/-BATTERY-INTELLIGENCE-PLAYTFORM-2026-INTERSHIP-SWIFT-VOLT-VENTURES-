@@ -14,17 +14,16 @@ from sklearn.preprocessing import StandardScaler
 from datetime import datetime
 
 from feature_engineering import engineer_features, SOH_FEATURES, RUL_FEATURES, SOH_TARGET, RUL_TARGET
+from app_paths import DATA_PATH, PREPROCESSING_REPORT_PATH
 
 
 def load_data(data_path: str = None) -> pd.DataFrame:
     """Load battery cycling data from CSV."""
     if data_path is None:
-        data_path = os.path.join(
-            os.path.dirname(os.path.abspath(__file__))
-        )
-    if not os.path.exists(data_path):
+        data_path = DATA_PATH
+    if not os.path.isfile(data_path):
         raise FileNotFoundError(
-            f"Dataset not found at {data_path}. Run data/generate_dataset.py first."
+            f"Dataset not found at {data_path}. Run generate_dataset.py first."
         )
     df = pd.read_csv(data_path)
     return df
