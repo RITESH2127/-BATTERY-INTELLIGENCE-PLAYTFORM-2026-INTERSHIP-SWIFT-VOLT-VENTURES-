@@ -184,6 +184,10 @@ def render():
     st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
     st.markdown('<div class="section-header">🔎 Battery Inspection</div>', unsafe_allow_html=True)
 
+    if filtered.empty:
+        st.info("No batteries match the current filters. Adjust the search or status filter.")
+        return
+
     selected_battery = st.selectbox(
         "Select a battery for detailed inspection",
         filtered["Battery ID"].tolist(),
