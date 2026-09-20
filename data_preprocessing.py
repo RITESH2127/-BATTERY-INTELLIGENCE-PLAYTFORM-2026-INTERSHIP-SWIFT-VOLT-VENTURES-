@@ -189,12 +189,8 @@ def preprocess_pipeline(test_size: float = 0.2, random_state: int = 42) -> dict:
     }
 
     # Save report
-    report_dir = os.path.join(
-        os.path.dirname(os.path.abspath(__file__))
-    )
-    os.makedirs(report_dir, exist_ok=True)
-    report_path = os.path.join(report_dir, "preprocessing_report.json")
-    with open(report_path, "w") as f:
+    report_path = PREPROCESSING_REPORT_PATH
+    with report_path.open("w", encoding="utf-8") as f:
         json.dump(report, f, indent=2, default=str)
     print(f"  ✓ Report saved: {report_path}")
 
