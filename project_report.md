@@ -102,35 +102,35 @@ The Battery Intelligence Platform uses a modular, decoupled architecture, separa
 ```mermaid
 graph TD
     subgraph Data Layer
-        A[data/battery_data.csv]
+        A[battery_data.csv]
     end
     
     subgraph Preprocessing & Feature Engineering
-        B[src/data_preprocessing.py]
-        C[src/feature_engineering.py]
-        R1[reports/preprocessing_report.json]
+        B[data_preprocessing.py]
+        C[feature_engineering.py]
+        R1[preprocessing_report.json]
     end
     
     subgraph Model Pipeline
-        D[src/model_training.py]
-        E[src/model_evaluation.py]
-        M_OUT[models/*.joblib]
-        M_META[models/model_metadata.json]
+        D[model_training.py]
+        E[model_evaluation.py]
+        M_OUT[*.joblib]
+        M_META[model_metadata.json]
     end
     
     subgraph Explanation Layer
-        F[src/explainability.py]
+        F[explainability.py]
     end
     
     subgraph Presentation Layer
         G[app.py]
-        H[dashboard/home.py]
-        I[dashboard/soh_prediction.py]
-        J[dashboard/rul_prediction.py]
-        K[dashboard/analytics.py]
-        L[dashboard/explainability_dashboard.py]
-        M[dashboard/fleet_monitoring.py]
-        N[assets/style.css]
+        H[home.py]
+        I[soh_prediction.py]
+        J[rul_prediction.py]
+        K[analytics.py]
+        L[explainability_dashboard.py]
+        M[fleet_monitoring.py]
+        N[style.css]
     end
 
     A --> B
@@ -159,11 +159,11 @@ graph TD
 ```
 
 ### Component Breakdown:
-1. **Data Preprocessing (`data_preprocessing.py`)**: Handles data loading, handles missing values, detects and clips outliers, scales features, splits data, and saves metadata to [preprocessing_report.json](file:///c:/Users/HP%20INDIA/.gemini/antigravity-ide/scratch/battery-intelligence-platform/reports/preprocessing_report.json).
+1. **Data Preprocessing (`data_preprocessing.py`)**: Handles data loading, handles missing values, detects and clips outliers, scales features, splits data, and saves metadata to [preprocessing_report.json](file:///c:/Users/HP%20INDIA/.gemini/antigravity-ide/scratch/battery-intelligence-platform/preprocessing_report.json).
 2. **Feature Engineering (`feature_engineering.py`)**: Derives advanced features from raw telemetry vectors and returns a modified DataFrame.
-3. **Model Training & Evaluation (`model_training.py`, `model_evaluation.py`)**: Performs grid searches, selects the best models, saves serialized estimators to `models/`, and outputs evaluation metrics to [model_metadata.json](file:///c:/Users/HP%20INDIA/.gemini/antigravity-ide/scratch/battery-intelligence-platform/models/model_metadata.json).
+3. **Model Training & Evaluation (`model_training.py`, `model_evaluation.py`)**: Performs grid searches, selects the best models, saves serialized estimators to ``, and outputs evaluation metrics to [model_metadata.json](file:///c:/Users/HP%20INDIA/.gemini/antigravity-ide/scratch/battery-intelligence-platform/model_metadata.json).
 4. **Explainability Module (`explainability.py`)**: Uses the SHAP library to compute shapley values, global importances, and local waterfall graphs.
-5. **Dashboard Layer (`app.py`, `dashboard/`, `assets/style.css`)**: Implements the Streamlit multi-page dashboard, using custom CSS to apply dark glassmorphism styling.
+5. **Dashboard Layer (`app.py`, `dashboard/`, `style.css`)**: Implements the Streamlit multi-page dashboard, using custom CSS to apply dark glassmorphism styling.
 
 ---
 
@@ -261,7 +261,7 @@ Ten engineered features are extracted to capture the physical degradation charac
     *Rationale*: Tracks the total temperature stress accumulated by the battery pack over its lifetime.
 
 ### 8.2 Correlation Analysis
-The correlations between the engineered features and target metrics (from [preprocessing_report.json](file:///c:/Users/HP%20INDIA/.gemini/antigravity-ide/scratch/battery-intelligence-platform/reports/preprocessing_report.json)) are shown below:
+The correlations between the engineered features and target metrics (from [preprocessing_report.json](file:///c:/Users/HP%20INDIA/.gemini/antigravity-ide/scratch/battery-intelligence-platform/preprocessing_report.json)) are shown below:
 
 | Feature Name | Correlation with SoH | Correlation with RUL | Primary Indicator Role |
 | :--- | :---: | :---: | :--- |
@@ -360,7 +360,7 @@ The performance metrics of all models evaluated on the test set are summarized b
 The presentation layer is implemented as a Streamlit web application. Custom CSS overrides apply a dark theme with electric blue accents and glassmorphic panels.
 
 ### 11.1 User Interface Routing & Architecture
-`app.py` reads [model_metadata.json](file:///c:/Users/HP%20INDIA/.gemini/antigravity-ide/scratch/battery-intelligence-platform/models/model_metadata.json) at startup to check if the trained models are available. If they are, it displays model statistics in the sidebar and enables page routing.
+`app.py` reads [model_metadata.json](file:///c:/Users/HP%20INDIA/.gemini/antigravity-ide/scratch/battery-intelligence-platform/model_metadata.json) at startup to check if the trained models are available. If they are, it displays model statistics in the sidebar and enables page routing.
 
 ### 11.2 Verification Recording
 The browser subagent verified all pages of the dashboard. The recording of the automated verification session is linked below:
