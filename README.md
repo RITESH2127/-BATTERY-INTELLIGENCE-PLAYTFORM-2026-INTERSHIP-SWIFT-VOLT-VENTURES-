@@ -186,6 +186,7 @@ The repository intentionally keeps the existing application modules at the proje
 ├── model_training.py              # Training + hyperparameter search
 ├── model_evaluation.py            # Metrics + plotting helpers
 ├── utils.py                       # Shared business/application utilities
+├── app_paths.py                   # Canonical data/model artifact paths
 ├── generate_dataset.py            # Synthetic dataset generator
 ├── battery_data.csv               # Demonstration dataset
 │
@@ -525,7 +526,7 @@ preprocessing_report.json
 
 Training is more computationally expensive than running the already-persisted application models because the workflow performs model comparison and hyperparameter search.
 
-For the fastest demo, use the persisted artifacts already included in the repository.
+For the fastest demo, use the persisted artifacts already included in the repository. The Streamlit pages resolve these root-level artifacts automatically; no manual models/ or data/ directory setup is required.
 
 ---
 
@@ -566,6 +567,29 @@ Workflow:
 ```text
 .github/workflows/ci.yml
 ```
+
+
+### Streamlit troubleshooting
+
+If the application opens but a prediction or analytics page previously reported missing models/data, update to the latest repository version. The application now uses a centralized path resolver for the root-level dataset and persisted model artifacts.
+
+The included artifacts are:
+
+- `battery_data.csv`
+- `model_metadata.json`
+- `soh_gradient_boosting.joblib`
+- `soh_scaler.joblib`
+- `rul_lightgbm.joblib`
+- `rul_scaler.joblib`
+
+Run the smoke test before starting Streamlit:
+
+```bash
+python scripts/smoke_test.py
+streamlit run app.py
+```
+
+The sidebar navigation uses stable page names independent of emoji or browser font rendering.
 
 ---
 
