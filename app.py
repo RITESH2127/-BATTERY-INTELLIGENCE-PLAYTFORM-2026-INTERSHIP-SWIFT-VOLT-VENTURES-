@@ -8,6 +8,8 @@ Multi-page navigation with dark theme and premium styling.
 import streamlit as st
 import os
 import sys
+import json
+from pathlib import Path
 
 # ─── Add current directory to path for imports ─── #
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -15,7 +17,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # ─── Page Configuration ─── #
 st.set_page_config(
     page_title="Battery Intelligence Platform",
-    page_icon="⚡",
+    page_icon="🔋",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -52,18 +54,20 @@ with st.sidebar:
         unsafe_allow_html=True,
     )
 
-    # Navigation
+    # Navigation uses stable, emoji-free values so routing is never dependent on
+    # Unicode rendering or a displayed label.
     page = st.radio(
         "Navigation",
         [
-            "🏠 Home Dashboard",
-            "🔋 SoH Prediction",
-            "🔄 RUL Prediction",
-            "📊 Analytics",
-            "🧠 Explainable AI",
-            "🚗 Fleet Monitoring",
+            "Home Dashboard",
+            "SoH Prediction",
+            "RUL Prediction",
+            "Analytics",
+            "Explainable AI",
+            "Fleet Monitoring",
         ],
         label_visibility="collapsed",
+        key="main_navigation",
     )
 
     st.markdown(
@@ -72,33 +76,38 @@ with st.sidebar:
     )
 
     # Model status
-    metadata_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "model_metadata.json")
-    if os.path.exists(metadata_path):
-        import json
-        with open(metadata_path, "r") as f:
-            meta = json.load(f)
-        st.markdown(
-            f"""
-            <div style="background:rgba(0,209,255,0.05);border:1px solid rgba(0,209,255,0.15);
-                border-radius:12px;padding:14px;margin-top:8px">
-                <span style="color:#00D1FF;font-weight:600;font-size:0.8rem">🤖 MODEL STATUS</span><br>
-                <span style="color:#34D399;font-size:0.75rem">● Models Trained</span><br>
-                <span style="color:#9AA0A6;font-size:0.72rem">
-                    SoH: {meta.get('soh_best_model', 'N/A')} (R²={meta.get('soh_best_cv_score', 0):.3f})<br>
-                    RUL: {meta.get('rul_best_model', 'N/A')} (R²={meta.get('rul_best_cv_score', 0):.3f})
-                </span>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+    from app_paths import METADATA_PATH
+
+    if METADATA_PATH.is_file():
+        try:
+            with METADATA_PATH.open("r", encoding="utf-8") as f:
+                meta = json.load(f)
+            soh_score = float(meta.get("soh_best_cv_score", 0.0))
+            rul_score = float(meta.get("rul_best_cv_score", 0.0))
+            st.markdown(
+                f"""
+                <div style="background:rgba(0,209,255,0.05);border:1px solid rgba(0,209,255,0.15);
+                    border-radius:12px;padding:14px;margin-top:8px">
+                    <span style="color:#00D1FF;font-weight:600;font-size:0.8rem">MODEL STATUS</span><br>
+                    <span style="color:#34D399;font-size:0.75rem">Models available</span><br>
+                    <span style="color:#9AA0A6;font-size:0.72rem">
+                        SoH: {meta.get('soh_best_model', 'N/A')} (R²={soh_score:.3f})<br>
+                        RUL: {meta.get('rul_best_model', 'N/A')} (R²={rul_score:.3f})
+                    </span>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+        except (OSError, json.JSONDecodeError, TypeError, ValueError):
+            st.warning("Model metadata could not be read. Run the training pipeline to regenerate artifacts.")
     else:
         st.markdown(
             """
             <div style="background:rgba(248,113,113,0.05);border:1px solid rgba(248,113,113,0.15);
                 border-radius:12px;padding:14px;margin-top:8px">
-                <span style="color:#F87171;font-weight:600;font-size:0.8rem">🤖 MODEL STATUS</span><br>
-                <span style="color:#F87171;font-size:0.75rem">● Not Trained</span><br>
-                <span style="color:#9AA0A6;font-size:0.72rem">Run training pipeline first</span>
+                <span style="color:#F87171;font-weight:600;font-size:0.8rem">MODEL STATUS</span><br>
+                <span style="color:#F87171;font-size:0.75rem">Not available</span><br>
+                <span style="color:#9AA0A6;font-size:0.72rem">Run the training pipeline first</span>
             </div>
             """,
             unsafe_allow_html=True,
@@ -118,27 +127,22 @@ with st.sidebar:
     )
 
 
-# ─── Page Routing ─── #
-if page == "🏠 Home Dashboard":
+# Page routing
+if page == "Home Dashboard":
     import home
     home.render()
-
-elif page == "🔋 SoH Prediction":
+elif page == "SoH Prediction":
     import soh_prediction
     soh_prediction.render()
-
-elif page == "🔄 RUL Prediction":
+elif page == "RUL Prediction":
     import rul_prediction
     rul_prediction.render()
-
-elif page == "📊 Analytics":
+elif page == "Analytics":
     import analytics
     analytics.render()
-
-elif page == "🧠 Explainable AI":
+elif page == "Explainable AI":
     import explainability_dashboard
     explainability_dashboard.render()
-
-elif page == "🚗 Fleet Monitoring":
+elif page == "Fleet Monitoring":
     import fleet_monitoring
     fleet_monitoring.render()
