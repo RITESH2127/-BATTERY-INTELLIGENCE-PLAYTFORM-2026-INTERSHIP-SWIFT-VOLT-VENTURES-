@@ -13,20 +13,20 @@ import joblib
 import os
 import json
 
-from src.explainability import (
+from explainability import (
     compute_shap_values, get_global_feature_importance,
     create_shap_importance_chart, get_local_explanation,
     create_waterfall_chart, create_feature_contribution_table,
 )
-from src.model_evaluation import COLORS, _plotly_dark_layout
-from src.feature_engineering import SOH_FEATURES, RUL_FEATURES, engineer_features
+from model_evaluation import COLORS, _plotly_dark_layout
+from feature_engineering import SOH_FEATURES, RUL_FEATURES, engineer_features
 
 
 def _load_models_and_data():
     """Load models, scalers, and test data for SHAP analysis."""
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    base_dir = os.path.dirname(os.path.abspath(__file__))
     models_dir = os.path.join(base_dir, "models")
-    data_path = os.path.join(base_dir, "data", "battery_data.csv")
+    data_path = os.path.join(base_dir, "battery_data.csv")
 
     if not os.path.exists(os.path.join(models_dir, "model_metadata.json")):
         return None

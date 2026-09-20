@@ -1,206 +1,342 @@
-# Battery Intelligence Platform
+# ⚡ Battery Intelligence Platform
 
 <p align="center">
-  <strong>Machine Learning for EV Battery Health, Degradation & Remaining Life</strong><br/>
-  State-of-Health prediction, Remaining Useful Life forecasting, fleet analytics, and explainable AI in one interactive platform.
+  <strong>Explainable Machine Learning for EV Battery Health, Degradation & Remaining Useful Life</strong><br/>
+  An end-to-end battery prognostics platform built with Python, scikit-learn, XGBoost, LightGBM, SHAP and Streamlit.
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
-  <img src="https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" alt="Streamlit"/>
-  <img src="https://img.shields.io/badge/Scikit--learn-ML-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="scikit-learn"/>
-  <img src="https://img.shields.io/badge/XGBoost-Boosting-189C3C?style=for-the-badge" alt="XGBoost"/>
-  <img src="https://img.shields.io/badge/LightGBM-Boosting-1B6BB8?style=for-the-badge" alt="LightGBM"/>
-  <img src="https://img.shields.io/badge/SHAP-XAI-7A3E9D?style=for-the-badge" alt="SHAP"/>
+  <a href="https://github.com/RITESH2127/-BATTERY-INTELLIGENCE-PLAYTFORM-2026-INTERSHIP-SWIFT-VOLT-VENTURES-/actions/workflows/ci.yml">
+    <img src="https://github.com/RITESH2127/-BATTERY-INTELLIGENCE-PLAYTFORM-2026-INTERSHIP-SWIFT-VOLT-VENTURES-/actions/workflows/ci.yml/badge.svg" alt="CI"/>
+  </a>
+  <img src="https://img.shields.io/badge/Python-3.10%20%E2%80%93%203.12-3776AB?logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?logo=streamlit&logoColor=white" alt="Streamlit"/>
+  <img src="https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikit-learn&logoColor=white" alt="scikit-learn"/>
+  <img src="https://img.shields.io/badge/XGBoost-Boosting-189C3C" alt="XGBoost"/>
+  <img src="https://img.shields.io/badge/LightGBM-Boosting-1B6BB8" alt="LightGBM"/>
+  <img src="https://img.shields.io/badge/SHAP-XAI-7A3E9D" alt="SHAP"/>
+  <img src="https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white" alt="Docker"/>
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License"/>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/SoH%20CV%20R%C2%B2-0.9999-111827?style=flat-square" alt="SoH CV R2"/>
-  <img src="https://img.shields.io/badge/RUL%20CV%20R%C2%B2-0.9840-111827?style=flat-square" alt="RUL CV R2"/>
-  <img src="https://img.shields.io/github/license/RITESH2127/-BATTERY-INTELLIGENCE-PLAYTFORM-2026-INTERSHIP-SWIFT-VOLT-VENTURES-?style=flat-square" alt="License"/>
-  <img src="https://img.shields.io/github/last-commit/RITESH2127/-BATTERY-INTELLIGENCE-PLAYTFORM-2026-INTERSHIP-SWIFT-VOLT-VENTURES-?style=flat-square" alt="Last commit"/>
-</p>
-
-<p align="center">
-  <a href="#overview">Overview</a> ·
-  <a href="#capabilities">Capabilities</a> ·
-  <a href="#architecture">Architecture</a> ·
-  <a href="#machine-learning-pipeline">ML Pipeline</a> ·
-  <a href="#explainable-ai">XAI</a> ·
-  <a href="#quick-start">Quick Start</a> ·
-  <a href="#limitations">Limitations</a>
+  <a href="#-overview">Overview</a> •
+  <a href="#-capabilities">Capabilities</a> •
+  <a href="#-architecture">Architecture</a> •
+  <a href="#-quick-start">Quick Start</a> •
+  <a href="#-machine-learning-pipeline">ML Pipeline</a> •
+  <a href="#-results">Results</a> •
+  <a href="#-internship-alignment">Internship Alignment</a> •
+  <a href="#-engineering-standards">Engineering Standards</a>
 </p>
 
 ---
 
-## Overview
+## 🎯 Overview
 
-**Battery Intelligence Platform** is an end-to-end machine learning application for analyzing and forecasting the health of lithium-ion EV batteries.
+**Battery Intelligence Platform** is an end-to-end machine-learning application for lithium-ion EV battery prognostics.
 
-The platform prepares battery telemetry, engineers degradation-oriented features, compares multiple ensemble regressors, persists model artifacts, and exposes the resulting intelligence through a Streamlit dashboard.
+The system transforms battery telemetry into actionable health intelligence through two primary prediction tasks:
 
-The system focuses on two core prognostics tasks:
+- **State of Health (SoH)** — estimates current battery health as a percentage.
+- **Remaining Useful Life (RUL)** — estimates remaining operating cycles before the project-defined end-of-life threshold.
 
-- **State of Health (SoH):** estimate current battery health as a percentage.
-- **Remaining Useful Life (RUL):** estimate remaining operating cycles relative to the project's defined end-of-life condition.
+The platform combines data preprocessing, degradation-oriented feature engineering, ensemble regression, model persistence, interactive inference, fleet analytics and SHAP-based explainability in a single Streamlit application.
 
-The platform also provides fleet monitoring, degradation analytics, maintenance-oriented rules, and SHAP-based model interpretation.
+> **Important:** This repository is an academic and engineering prototype. Its predictions are not certified battery-management-system outputs and must not be used as the sole basis for safety-critical, warranty, vehicle-control or production maintenance decisions.
 
-> **Project status:** This is an academic and engineering prototype for battery prognostics research and demonstration. It is not a certified battery-management system and should not be used as the sole basis for safety-critical, warranty, maintenance, or vehicle-control decisions.
+### Why this project matters
+
+EV battery systems generate rich sequential telemetry, but raw measurements alone do not directly answer operational questions such as:
+
+- How healthy is this battery?
+- How many useful cycles remain?
+- Which measurements are driving the prediction?
+- Which batteries in a fleet require attention?
+- How can an ML model be moved from experimentation toward a repeatable deployment workflow?
+
+This project demonstrates the complete path from telemetry to an interactive ML decision-support interface.
 
 ---
 
-# Capabilities
+## ✨ Capabilities
 
-| Capability | What it provides |
+| Capability | Implementation |
 |---|---|
-| SoH Prediction | Interactive estimation of battery State of Health |
-| RUL Forecasting | Remaining-cycle estimation for lifecycle planning |
-| Model Comparison | Random Forest, XGBoost, LightGBM, and Gradient Boosting workflows |
-| Explainable AI | Global and local SHAP-based feature attribution |
-| Fleet Monitoring | Simulated multi-battery health and risk overview |
-| Analytics | Degradation trends, feature relationships, and telemetry analysis |
-| Maintenance Rules | Heuristic recommendations based on predicted condition |
-| Model Persistence | Serialized models and preprocessing artifacts for inference |
+| 🔋 SoH Prediction | Gradient Boosting regression |
+| 🔄 RUL Forecasting | LightGBM regression |
+| 🧪 Model Comparison | Random Forest, XGBoost, Gradient Boosting, LightGBM |
+| 🧠 Explainable AI | Global and local SHAP analysis |
+| 📊 Analytics | Capacity fade, thermal behavior, correlations and degradation trends |
+| 🚗 Fleet Monitoring | Deterministic simulated fleet dashboard |
+| 🛠️ Maintenance Layer | Rule-based condition and lifecycle recommendations |
+| 💾 Model Persistence | Joblib model and scaler artifacts |
+| 🎛️ Interactive UI | Multi-page Streamlit application |
+| 🐳 Containerization | Docker + Docker Compose |
+| ✅ Quality Automation | GitHub Actions + compile + smoke tests |
+| 📦 Reproducible Setup | Constrained dependency major versions |
+| 📚 Documentation | Technical report + engineering README |
 
 ---
 
-# Architecture
+## 🧭 Dashboard
+
+The Streamlit application provides six operational views:
+
+1. **Home Dashboard** — platform overview and battery-health KPIs.
+2. **SoH Prediction** — interactive battery-health inference.
+3. **RUL Prediction** — remaining-cycle estimation and degradation forecast.
+4. **Analytics** — battery degradation and telemetry analysis.
+5. **Explainable AI** — global feature importance and individual prediction explanations.
+6. **Fleet Monitoring** — simulated fleet health, search, filtering and inspection.
+
+---
+
+## 🏗️ Architecture
+
+### System architecture
 
 ```mermaid
 flowchart TD
-    A["Battery Telemetry / Synthetic Dataset"] --> B["Data Preprocessing"]
+    A["Battery Telemetry / CSV"] --> B["Data Validation & Cleaning"]
     B --> C["Feature Engineering"]
-    C --> D["Train / Test Split"]
-    D --> E["Model Selection + Hyperparameter Tuning"]
+    C --> D["Train / Validation Workflow"]
 
-    E --> E1["Random Forest"]
-    E --> E2["XGBoost"]
-    E --> E3["LightGBM"]
-    E --> E4["Gradient Boosting"]
+    D --> E1["SoH Models"]
+    D --> E2["RUL Models"]
 
-    E1 --> F["Persisted Model Artifacts"]
-    E2 --> F
-    E3 --> F
-    E4 --> F
+    E1 --> F1["Gradient Boosting"]
+    E2 --> F2["LightGBM"]
 
-    F --> G["SoH Prediction"]
-    F --> H["RUL Prediction"]
-    F --> I["SHAP Explainability"]
+    F1 --> G["Persisted Model Artifacts"]
+    F2 --> G
 
-    G --> J["Streamlit Dashboard"]
-    H --> J
-    I --> J
+    G --> H["Streamlit Inference Layer"]
+    G --> I["SHAP Explainability"]
 
-    J --> J1["Home"]
-    J --> J2["SoH Prediction"]
-    J --> J3["RUL Prediction"]
-    J --> J4["Analytics"]
-    J --> J5["Explainable AI"]
-    J --> J6["Fleet Monitoring"]
+    H --> J1["Home"]
+    H --> J2["SoH Prediction"]
+    H --> J3["RUL Prediction"]
+    H --> J4["Analytics"]
+    H --> J5["XAI"]
+    H --> J6["Fleet Monitoring"]
+
+    B --> K["Preprocessing Metadata"]
+    D --> L["Model Metadata"]
 ```
 
-## System layers
+### Runtime flow
 
 ```text
-                         BATTERY INTELLIGENCE PLATFORM
-                                      │
-        ┌─────────────────────────────┼─────────────────────────────┐
-        │                             │                             │
-        ▼                             ▼                             ▼
-   DATA LAYER                 MODELING LAYER                 APP LAYER
-        │                             │                             │
-        ├─ battery_data.csv           ├─ SoH regression             ├─ Home
-        ├─ preprocessing              ├─ RUL regression              ├─ SoH Prediction
-        └─ feature engineering        ├─ model selection             ├─ RUL Prediction
-                                      └─ persisted artifacts         ├─ Analytics
-                                                                    ├─ Explainability
-                                                                    └─ Fleet Monitoring
+                    ┌─────────────────────────┐
+                    │   Battery Telemetry     │
+                    │      battery_data.csv   │
+                    └────────────┬────────────┘
+                                 │
+                                 ▼
+                    ┌─────────────────────────┐
+                    │ Cleaning + Validation   │
+                    │ Missing values / IQR    │
+                    └────────────┬────────────┘
+                                 │
+                                 ▼
+                    ┌─────────────────────────┐
+                    │ Feature Engineering     │
+                    │ Wear / thermal / cycle  │
+                    │ degradation indicators  │
+                    └────────────┬────────────┘
+                                 │
+                    ┌────────────┴────────────┐
+                    ▼                         ▼
+             ┌─────────────┐           ┌─────────────┐
+             │    SoH      │           │     RUL     │
+             │ Regression  │           │ Regression  │
+             └──────┬──────┘           └──────┬──────┘
+                    │                         │
+                    ▼                         ▼
+             Gradient Boosting              LightGBM
+                    │                         │
+                    └────────────┬────────────┘
+                                 ▼
+                    ┌─────────────────────────┐
+                    │ Persisted Models/Scalers│
+                    └────────────┬────────────┘
+                                 │
+              ┌──────────────────┼──────────────────┐
+              ▼                  ▼                  ▼
+        Streamlit UI          SHAP XAI        Fleet Analytics
+```
+
+### Repository architecture
+
+The repository intentionally keeps the existing application modules at the project root to preserve compatibility with the original implementation while correcting the historical `src.*` import and path mismatches.
+
+```text
+.
+├── app.py                         # Streamlit entrypoint
+├── home.py                        # Home dashboard
+├── soh_prediction.py              # SoH inference UI
+├── rul_prediction.py              # RUL inference UI
+├── analytics.py                   # Analytics dashboard
+├── explainability.py              # SHAP utilities
+├── explainability_dashboard.py    # XAI dashboard
+├── fleet_monitoring.py            # Fleet dashboard
+├── feature_engineering.py         # Feature definitions + transformations
+├── data_preprocessing.py           # Cleaning, splitting, scaling
+├── model_training.py              # Training + hyperparameter search
+├── model_evaluation.py            # Metrics + plotting helpers
+├── utils.py                       # Shared business/application utilities
+├── generate_dataset.py            # Synthetic dataset generator
+├── battery_data.csv               # Demonstration dataset
+│
+├── *_*.joblib                     # Persisted model/scaler artifacts
+├── model_metadata.json             # Selected models + feature metadata
+├── preprocessing_report.json       # Dataset/preprocessing metadata
+│
+├── .streamlit/config.toml         # Streamlit runtime configuration
+├── Dockerfile                     # Container image
+├── compose.yaml                   # Docker Compose entrypoint
+├── .env.example                   # Environment template
+├── requirements.txt               # Runtime dependencies
+├── pyproject.toml                 # Python project metadata
+├── tests/                          # Automated tests
+├── scripts/                        # Run/train/smoke-test helpers
+├── .github/workflows/ci.yml        # Continuous integration
+├── project_report.md               # Detailed technical report
+├── ritesh.pdf                     # Repository-provided credential/document artifact
+└── LICENSE                         # MIT license
 ```
 
 ---
 
-# Machine Learning Pipeline
+## 🧪 Dataset
 
-## Data preparation
+The demonstration workflow contains **2,748 simulated battery cycles** across four battery identifiers:
 
-The preprocessing layer prepares telemetry before model training and inference.
+- `B0005`
+- `B0006`
+- `B0007`
+- `B0018`
 
-Current documented steps include:
+The generated telemetry contains electrical, thermal and degradation-related measurements such as:
 
-1. Missing-value handling.
-2. Numerical-column cleaning.
-3. IQR-based outlier mitigation.
-4. Train/test separation.
-5. Standard scaling.
-6. Preprocessing metadata export.
+- cycle number
+- measured voltage
+- measured current
+- measured temperature
+- charging voltage
+- charging current
+- capacity
+- internal resistance
+- ambient temperature
 
-```text
-Raw telemetry
-     ↓
-Cleaning & validation
-     ↓
-Outlier mitigation
-     ↓
-Feature engineering
-     ↓
-Scaling
-     ↓
-Model-ready matrix
-```
+The dataset is modeled around NASA PCoE-style battery-aging profiles for experimentation and software demonstration.
 
-## Feature engineering
+### Data limitation
 
-The project creates degradation-oriented features that summarize battery wear and operating stress.
+The current dataset is **synthetic/simulated**. Excellent performance on this dataset must not be interpreted as equivalent performance on independent real-world EV fleets.
 
-| Feature | Interpretation |
+A production evaluation should include:
+
+- battery-level grouped splits
+- time-aware validation
+- unseen battery validation
+- chemistry diversity
+- sensor noise
+- environmental variability
+- charging-pattern variability
+- external test datasets
+
+---
+
+## 🧮 Machine Learning Pipeline
+
+### 1. Data preparation
+
+The preprocessing layer performs:
+
+1. CSV loading
+2. Missing-value handling
+3. IQR-based outlier detection
+4. Outlier clipping
+5. Feature engineering
+6. Train/test separation
+7. StandardScaler fitting on training data
+8. Preprocessing metadata generation
+
+The current stored preprocessing report records:
+
+- **2,748 rows**
+- **12 raw columns**
+- **22 engineered columns**
+- **2,198 training rows**
+- **550 test rows**
+- no missing values in the stored dataset
+- no detected IQR outliers in the stored preprocessing run
+
+### 2. Feature engineering
+
+The project derives degradation-oriented indicators including:
+
+| Feature | Purpose |
 |---|---|
-| `capacity_retention_rate` | Relative capacity remaining |
-| `resistance_growth_rate` | Relative increase in internal resistance |
+| `capacity_retention_rate` | Relative remaining capacity |
+| `resistance_growth_rate` | Relative internal-resistance growth |
 | `cycle_efficiency` | Charge/discharge efficiency proxy |
-| `degradation_rate` | Estimated rate of capacity loss |
-| `temperature_stress_score` | Temperature deviation from the target operating range |
+| `degradation_rate` | Capacity-loss velocity |
+| `temperature_stress_score` | Operating-temperature stress |
 | `battery_wear_index` | Composite wear indicator |
-| `avg_charge_temperature` | Rolling thermal indicator |
-| `avg_discharge_temperature` | Rolling thermal indicator |
+| `avg_charge_temperature` | Rolling thermal condition |
+| `avg_discharge_temperature` | Rolling discharge thermal condition |
 | `voltage_drop` | Charge/discharge voltage differential |
 | `cumulative_temp_stress` | Accumulated thermal stress |
 
+### 3. Model development
+
+The project compares tree-based ensemble regressors and persists the selected models.
+
+#### SoH
+
+**Selected model:** Gradient Boosting Regressor
+
+Stored project metadata:
+
+- learning rate: `0.05`
+- maximum depth: `5`
+- estimators: `200`
+- cross-validation (R²): **0.9999**
+
+#### RUL
+
+**Selected model:** LightGBM Regressor
+
+Stored project metadata:
+
+- learning rate: `0.10`
+- maximum depth: `20`
+- estimators: `200`
+- cross-validation (R²): **0.9840**
+
+### 4. Explainability
+
+SHAP is used to expose:
+
+- global feature importance
+- local feature contributions
+- directional influence on individual predictions
+- prediction breakdowns relative to model expectations
+
+> SHAP explains how the trained model uses its inputs. It does not establish causal relationships between a telemetry variable and physical battery degradation.
+
 ---
 
-# Model Development
+## 📈 Results
 
-The platform compares multiple tree-based regressors and selects models through cross-validation.
-
-## State of Health
-
-Current repository metadata records:
-
-```text
-Selected model:  Gradient Boosting
-CV R²:           0.9999
-Learning rate:   0.05
-Max depth:       5
-Estimators:      200
-```
-
-## Remaining Useful Life
-
-Current repository metadata records:
-
-```text
-Selected model:  LightGBM
-CV R²:           0.9840
-Learning rate:   0.10
-Max depth:       20
-Estimators:      200
-```
-
-## Cross-validation results recorded by the project
+The repository's stored model metadata records the following cross-validation results:
 
 ### SoH
 
-| Model | CV R² |
+| Model | CV (R²) |
 |---|---:|
 | Random Forest | 0.9998 |
 | XGBoost | 0.9998 |
@@ -208,425 +344,565 @@ Estimators:      200
 
 ### RUL
 
-| Model | CV R² |
+| Model | CV (R²) |
 |---|---:|
 | Random Forest | 0.9781 |
 | XGBoost | 0.9813 |
 | LightGBM | **0.9840** |
 
-> These values come from the repository's stored model metadata. Because the current development workflow uses synthetic / simulated battery data, these scores do not establish equivalent performance on real-world EV fleets.
+These values describe the project's stored evaluation run on the current simulated dataset.
+
+### Evaluation caution
+
+Battery telemetry is sequential and multiple observations originate from the same battery. Random row-level splitting can produce overly optimistic estimates because neighboring cycles may be highly correlated.
+
+The next rigorous evaluation step is therefore **battery-level grouped and time-aware validation**. The current repository documentation already identifies this as an important limitation.
 
 ---
 
-# Explainable AI
+## 🚀 Quick Start
 
-Interpretability is integrated into the platform through **SHAP (SHapley Additive exPlanations)**.
+### Option A — Local Python
 
-## Global explanation
+**Requirements**
 
-Global SHAP analysis helps identify which features have the largest average influence on model behavior across the evaluated dataset.
-
-## Local explanation
-
-Local explanations show how individual feature values contribute to a specific prediction relative to the model's baseline expectation.
-
-```text
-Prediction
-    │
-    ▼
-Baseline expectation
-    │
-    ├── Feature contribution +
-    ├── Feature contribution -
-    ├── Feature contribution +
-    └── Feature contribution -
-    │
-    ▼
-Final model output
-```
-
-> SHAP describes how a model uses its inputs. It does not prove that a feature is causally responsible for battery degradation.
-
----
-
-# Dashboard
-
-The Streamlit application currently exposes six major areas.
-
-| Page | Purpose |
-|---|---|
-| **Home Dashboard** | High-level platform and fleet overview |
-| **SoH Prediction** | Interactive battery-health estimation |
-| **RUL Prediction** | Remaining-cycle forecasting |
-| **Analytics** | Degradation trends and feature relationships |
-| **Explainable AI** | Global and local SHAP interpretation |
-| **Fleet Monitoring** | Simulated fleet-level health monitoring |
-
-The interface uses the project's custom dark theme from `config.toml` and `style.css`.
-
----
-
-# Risk & Maintenance Layer
-
-The utility layer maps predicted SoH into application-level categories.
-
-| SoH | Category |
-|---:|---|
-| 90–100 | Excellent |
-| 75–89.99 | Good |
-| 60–74.99 | Warning |
-| Below 60 | Critical |
-
-The platform additionally derives maintenance-oriented messages using SoH, temperature, internal resistance, and RUL.
-
-These rules are **application heuristics**, not universal battery-manufacturer service thresholds.
-
----
-
-# Dataset
-
-The project documentation describes a synthetic battery dataset modeled around NASA PCoE-style battery aging profiles.
-
-The documented dataset contains:
-
-- **2,748 simulated cycles**
-- Four simulated battery identifiers: `B0005`, `B0006`, `B0007`, `B0018`
-- Voltage, current, temperature, capacity, resistance, and charging telemetry
-
-The repository includes `battery_data.csv` for the demonstration workflow.
-
-> Synthetic data is useful for experimentation and software demonstration, but it cannot represent the complete variability of real EV operation.
-
----
-
-# Repository Structure
-
-```text
--BATTERY-INTELLIGENCE-PLAYTFORM-2026-INTERSHIP-SWIFT-VOLT-VENTURES-/
-│
-├── app.py
-├── analytics.py
-├── data_preprocessing.py
-├── explainability.py
-├── rul_prediction.py
-├── soh_prediction.py
-├── utils.py
-│
-├── home.py
-├── explainability_dashboard.py
-├── fleet_monitoring.py
-├── style.css
-├── config.toml
-│
-├── battery_data.csv
-├── preprocessing_report.json
-├── model_metadata.json
-│
-├── soh_*.joblib
-├── rul_*.joblib
-│
-├── project_report.md
-├── requirements.txt
-└── LICENSE
-```
-
-The repository also currently contains generated Python cache artifacts such as `__pycache__` and `.pyc` files. These are not required for the source distribution and should normally be excluded from version control.
-
----
-
-# Module Responsibilities
-
-| Module | Responsibility |
-|---|---|
-| `app.py` | Streamlit entrypoint and page routing |
-| `data_preprocessing.py` | Data cleaning, outlier handling, scaling |
-| `analytics.py` | Degradation and dataset analytics |
-| `explainability.py` | SHAP utilities |
-| `soh_prediction.py` | SoH inference workflow |
-| `rul_prediction.py` | RUL inference workflow |
-| `fleet_monitoring.py` | Fleet simulation and monitoring |
-| `explainability_dashboard.py` | XAI interface |
-| `home.py` | Dashboard landing page |
-| `utils.py` | Risk classification and shared helpers |
-| `style.css` | Custom visual styling |
-| `config.toml` | Streamlit configuration |
-
----
-
-# Quick Start
-
-## Requirements
-
-- Python 3.10+
+- Python 3.10–3.12
 - Git
 - 2 GB+ RAM recommended
-- Windows, macOS, or Linux
 
-## Clone
+Clone the repository:
 
 ```bash
 git clone https://github.com/RITESH2127/-BATTERY-INTELLIGENCE-PLAYTFORM-2026-INTERSHIP-SWIFT-VOLT-VENTURES-.git
-cd "-BATTERY-INTELLIGENCE-PLAYTFORM-2026-INTERNSHIP-SWIFT-VOLT-VENTURES-"
+cd -- "-BATTERY-INTELLIGENCE-PLAYTFORM-2026-INTERSHIP-SWIFT-VOLT-VENTURES-"
 ```
 
-## Create a virtual environment
+Create a virtual environment:
 
-### Windows
+**Windows PowerShell**
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
-### macOS / Linux
+**macOS/Linux**
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-## Install dependencies
+Install dependencies:
 
 ```bash
-python -m pip install --upgrade pip setuptools wheel
-pip install -r requirements.txt
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
 
-## Run
+Launch:
 
 ```bash
 streamlit run app.py
 ```
 
-Open `http://localhost:8501` in your browser.
-
----
-
-# Programmatic Inference
-
-Persisted model and scaler artifacts can be loaded directly:
-
-```python
-import joblib
-
-model = joblib.load("soh_xgboost.joblib")
-scaler = joblib.load("soh_scaler.joblib")
-```
-
-For reliable inference, the input must use the same feature definitions and ordering expected by the trained artifact.
-
----
-
-# Reproducibility
-
-A strong experiment record should preserve the complete path from data to deployed artifact.
+Open:
 
 ```text
-Dataset version
-      ↓
-Preprocessing configuration
-      ↓
-Feature definitions
-      ↓
-Train/test split
-      ↓
-Hyperparameters
-      ↓
-Best estimator
-      ↓
-Evaluation metrics
-      ↓
-Serialized artifact
-      ↓
-Inference environment
+http://localhost:8501
 ```
 
-Recommended next steps include:
+### Option B — Windows helper
 
-- fixed random seeds across all stages,
-- dataset versioning,
-- model versioning,
-- automated feature-engineering tests,
-- inference integration tests,
-- experiment tracking,
-- CI validation,
-- explicit dependency locking.
+PowerShell:
 
----
+```powershell
+$env:APP_PORT = "8501"
+.scripts\run.ps1
+```
 
-# Engineering Considerations
+### Option C — Docker
 
-## Synthetic versus real telemetry
+Build and run:
 
-Real EV telemetry introduces substantially greater variability than a controlled synthetic dataset, including chemistry, cell variation, thermal history, driving behavior, charging behavior, sensor noise, pack architecture, and aging mechanisms.
+```bash
+docker build -t battery-intelligence-platform:local .
+docker run --rm -p 8501:8501 battery-intelligence-platform:local
+```
 
-## Temporal validation
-
-Battery telemetry is sequential. Random row-level splitting can leak information when adjacent cycles from the same battery appear in both training and test data.
-
-A stronger future evaluation design should use **battery-level grouped and time-aware splits**.
-
-## Confidence estimates
-
-The current utility layer includes model-dependent confidence heuristics. These outputs should not be interpreted as calibrated probabilities without formal calibration and uncertainty evaluation.
-
-## Deployment evolution
-
-A production-oriented architecture could separate:
+Then open:
 
 ```text
-Telemetry ingestion
-        ↓
-Feature service
-        ↓
-Model service
-        ↓
-Prediction API
-        ↓
-Time-series / relational storage
-        ↓
-Monitoring dashboard
+http://localhost:8501
+```
+
+### Option D — Docker Compose
+
+No database or external service is required for the default application.
+
+```bash
+docker compose up --build
+```
+
+Open:
+
+```text
+http://localhost:8501
+```
+
+Stop:
+
+```bash
+docker compose down
+```
+
+The container exposes a Streamlit health endpoint and includes a Docker healthcheck.
+
+---
+
+## 🧰 Configuration
+
+The default project requires **no secrets**.
+
+A template is provided at:
+
+```text
+.env.example
+```
+
+Copy it when local environment customization is desired:
+
+```bash
+cp .env.example .env
+```
+
+On Windows PowerShell:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+The primary runtime setting is:
+
+```text
+APP_PORT=8501
+```
+
+The project intentionally does not require a database for its current demonstration workflow.
+
+---
+
+## 🏋️ Training from Scratch
+
+The repository includes the complete preprocessing and model-training pipeline.
+
+Run:
+
+```bash
+python -m model_training
+```
+
+or:
+
+```bash
+bash scripts/train.sh
+```
+
+Training generates/updates:
+
+```text
+soh_*.joblib
+rul_*.joblib
+soh_scaler.joblib
+rul_scaler.joblib
+model_metadata.json
+preprocessing_report.json
+```
+
+### Important
+
+Training is more computationally expensive than running the already-persisted application models because the workflow performs model comparison and hyperparameter search.
+
+For the fastest demo, use the persisted artifacts already included in the repository.
+
+---
+
+## 🔬 Verification & Quality Gates
+
+The repository now includes lightweight automated checks.
+
+### Compile all Python sources
+
+```bash
+python -m compileall -q .
+```
+
+### Run the smoke test
+
+```bash
+python scripts/smoke_test.py
+```
+
+### Run tests
+
+```bash
+pytest
+```
+
+### Continuous Integration
+
+Every push to the main/refactor branches and every pull request targeting `main` runs:
+
+1. Python setup
+2. Dependency installation
+3. Python compilation
+4. Dataset/feature-engineering smoke test
+5. Streamlit entrypoint import validation
+
+Workflow:
+
+```text
+.github/workflows/ci.yml
 ```
 
 ---
 
-# Limitations
+## 🐳 Container Design
 
-### Synthetic data
+The Docker image follows a simple production-oriented pattern:
 
-The current training workflow is based on simulated battery behavior and cannot establish real-world fleet performance.
+```text
+Python 3.12 slim
+       │
+       ├── Install pinned major-version dependencies
+       │
+       ├── Copy application
+       │
+       ├── Run as non-root user
+       │
+       ├── Expose 8501
+       │
+       ├── Healthcheck /_stcore/health
+       │
+       └── Start Streamlit
+```
 
-### Dataset shift
-
-Models trained on one battery population may not generalize to different chemistries, manufacturers, climates, cell formats, vehicle platforms, or charging profiles.
-
-### RUL definition
-
-RUL depends on a clearly specified end-of-life criterion and consistent degradation trajectory.
-
-### Multimodal safety context
-
-Battery health estimates can be safety-relevant. Outputs should therefore be treated as decision support unless independently validated for the intended environment.
-
----
-
-# Future Roadmap
-
-## Modeling
-
-- Temporal models for sequential telemetry
-- LSTM and GRU baselines
-- Temporal Transformers
-- Multi-task SoH + RUL learning
-- Uncertainty-aware prediction
-- Physics-informed machine learning
-- Battery-specific transfer learning
-
-## Data
-
-- Real EV telemetry integration
-- Larger multi-battery datasets
-- Multiple battery chemistries
-- Cell-level and pack-level signals
-- Environmental metadata
-- Time-series dataset versioning
-
-## MLOps
-
-- MLflow experiment tracking
-- Model registry
-- Automated retraining
-- Data validation
-- Drift monitoring
-- Model monitoring
-- Dockerized deployment
-- CI/CD
-
-## Serving
-
-- FastAPI inference service
-- PostgreSQL / time-series storage
-- Event-based telemetry ingestion
-- Cloud deployment
-- ONNX-based inference where appropriate
+The container is deliberately stateless. Model artifacts and the demonstration dataset are packaged with the application.
 
 ---
 
-# Development Roadmap
+## 🔐 Security & Responsible Use
+
+This application loads serialized Joblib artifacts. Joblib ultimately relies on Python serialization mechanisms, so model files should be treated as **trusted application artifacts**.
+
+Do not load arbitrary model files supplied by untrusted users.
+
+For a production deployment, add:
+
+- authenticated access
+- TLS termination
+- secret management
+- signed/versioned model artifacts
+- model provenance
+- data-access controls
+- audit logging
+- model-drift monitoring
+- dependency vulnerability scanning
+- container image scanning
+
+The current application is a decision-support prototype, not a certified BMS or safety controller.
+
+---
+
+## 🧱 Engineering Standards
+
+The refactored repository introduces the following engineering practices:
+
+### Code quality
+
+- consistent root-level imports
+- deterministic local paths
+- explicit dependency version bounds
+- defensive empty-state handling
+- reusable utility modules
+- modular preprocessing/modeling/dashboard layers
+
+### Reproducibility
+
+- persisted models
+- persisted scalers
+- model metadata
+- preprocessing metadata
+- fixed random seeds where simulation is used
+- explicit Python version range
+- dependency major-version constraints
+
+### DevOps
+
+- Dockerfile
+- Docker Compose
+- healthcheck
+- non-root container user
+- environment template
+- GitHub Actions CI
+- smoke tests
+- local run scripts
+
+### Documentation
+
+- architecture diagrams
+- ML pipeline description
+- limitations
+- operational setup
+- training workflow
+- deployment workflow
+- responsible-use guidance
+- internship alignment
+
+---
+
+## 🎓 Internship Alignment
+
+This repository was developed as part of a **Machine Learning Engineer Intern** context at **SwiftVolt Ventures India Private Limited**, with the project positioned around EV battery intelligence.
+
+The engineering scope represented by this repository maps directly to the practical ML workflow expected from an internship project:
+
+| Internship-oriented capability | Evidence in this repository |
+|---|---|
+| Python development | Modular Python application and ML pipeline |
+| Data preprocessing | Missing-value handling, outlier mitigation, scaling |
+| Feature engineering | Battery degradation and thermal features |
+| Model development | Multiple ensemble regression algorithms |
+| Model evaluation | Cross-validation and regression metrics |
+| End-to-end ML pipeline | Data → preprocessing → features → training → artifacts → inference |
+| Explainability | SHAP global/local analysis |
+| Deployment orientation | Streamlit + Docker + Compose |
+| Testing | Smoke tests + CI |
+| Documentation | README + technical report |
+| Git/version control | GitHub repository + CI workflow |
+| Engineering discipline | Reproducible configuration and runtime tooling |
+
+### Internship project progression
 
 ```mermaid
 timeline
-    title Battery Intelligence Platform
-    2026 : Synthetic battery intelligence prototype
-         : SoH regression
-         : RUL forecasting
+    title Battery Intelligence Engineering Progression
+    2026 : Battery telemetry exploration
+         : Data preprocessing
+         : Degradation feature engineering
+         : SoH model development
+         : RUL model development
+         : Model comparison and evaluation
          : SHAP explainability
-         : Streamlit dashboard
-    Next : Real telemetry integration
-         : Battery-level grouped validation
-         : Uncertainty estimation
-         : Automated retraining
+         : Streamlit operational dashboard
+         : Runtime and deployment hardening
+         : Documentation and CI
+    Next : Battery-level grouped validation
+         : Real-world telemetry
          : Model monitoring
-    Future : Production inference API
-           : Temporal modeling
-           : Multi-chemistry adaptation
-           : Edge deployment
+         : Uncertainty estimation
+         : Production inference API
 ```
 
----
+### Professional relevance
 
-# Responsible Use
-
-This repository is intended for academic work, ML engineering practice, battery analytics experimentation, predictive-maintenance research, and explainable ML demonstrations.
-
-It should not be treated as the sole source for battery safety decisions, warranty decisions, vehicle-control decisions, or production maintenance actions without qualified validation.
+SwiftVolt Ventures operates in electric mobility and lithium-ion battery technology, making battery health, lifecycle estimation, telemetry analytics and predictive maintenance directly relevant engineering themes for this project. The company's public materials describe its focus on electric two-wheelers and lithium-ion battery systems. 
 
 ---
 
-# References
+## 🏅 Credentials & Supporting Documents
 
-The project documentation builds on publicly documented battery-aging research and the open-source machine learning ecosystem, including:
+The repository retains:
 
-- NASA Prognostics Center of Excellence battery-aging resources
-- scikit-learn
-- XGBoost
-- LightGBM
-- SHAP
-- Streamlit
-- Plotly
-- NumPy
-- Pandas
-- Matplotlib
-- Seaborn
-- Joblib
+- `ritesh.pdf` — repository-provided credential/document artifact.
+- `project_report.md` — detailed technical implementation and performance report.
 
-See [project_report.md](project_report.md) for the detailed technical report and methodology.
+The author's public professional profile currently lists the following credentials:
 
----
+| Credential | Issuer | Issued |
+|---|---|---|
+| Python Course | GeeksforGeeks | June 2026 |
+| AI Fluency for Students | Anthropic | March 2026 |
+| Machine Learning | GeeksforGeeks | January 2026 |
+| Machine Learning | GAIL (India) Limited | September 2025 |
+| SwiftVolt Ventures internship | SwiftVolt Ventures India Private Limited | 2026 |
 
-# License
-
-This project is released under the **MIT License**.
-
-See [LICENSE](LICENSE) for the full license text.
+> Credential claims should always be verified against the issuing organization's credential record or the original certificate.
 
 ---
 
-# Author
+## 📊 Current Project Snapshot
+
+| Metric | Value |
+|---|---:|
+| Simulated battery cycles | **2,748** |
+| Battery identifiers | **4** |
+| Engineered features | **10+** |
+| SoH CV (R²) | **0.9999** |
+| RUL CV (R²) | **0.9840** |
+| Dashboard pages | **6** |
+| Fleet simulation | **25 batteries** |
+| Explainability | **SHAP** |
+| Containerization | **Docker** |
+| CI | **GitHub Actions** |
+
+---
+
+## 🛣️ Production Roadmap
+
+### Phase 1 — Validation hardening
+
+- [ ] Battery-level grouped cross-validation
+- [ ] Time-aware evaluation
+- [ ] Holdout battery evaluation
+- [ ] External dataset validation
+- [ ] Confidence/uncertainty calibration
+
+### Phase 2 — Data engineering
+
+- [ ] Real EV telemetry ingestion
+- [ ] Time-series storage
+- [ ] Schema validation
+- [ ] Data-quality monitoring
+- [ ] Dataset versioning
+
+### Phase 3 — ML engineering
+
+- [ ] MLflow experiment tracking
+- [ ] Model registry
+- [ ] Automated retraining
+- [ ] Drift detection
+- [ ] Champion/challenger evaluation
+- [ ] Feature-store integration where justified
+
+### Phase 4 — Serving
+
+```text
+Telemetry
+   ↓
+Ingestion API
+   ↓
+Validation
+   ↓
+Feature Service
+   ↓
+Model Service
+   ↓
+Prediction API
+   ↓
+Time-Series Database
+   ↓
+Monitoring / Dashboard
+```
+
+Potential production technologies include FastAPI, PostgreSQL/time-series storage, MLflow, Docker and cloud-native deployment.
+
+### Phase 5 — Advanced battery intelligence
+
+- temporal models
+- LSTM/GRU baselines
+- Temporal Transformers
+- multi-task SoH + RUL learning
+- uncertainty-aware forecasting
+- physics-informed ML
+- chemistry transfer learning
+- anomaly detection
+- edge inference / ONNX
+
+---
+
+## ⚠️ Known Limitations
+
+### Synthetic data
+
+The current training dataset is simulated and therefore does not capture the full variability of real EV fleets.
+
+### Sequential leakage risk
+
+Random row-level splitting is weaker than battery-level and time-aware evaluation for sequential degradation data.
+
+### Dataset shift
+
+A model trained on one battery population may not generalize to another chemistry, manufacturer, climate, cell format or operating regime.
+
+### RUL definition
+
+RUL is dependent on the chosen end-of-life criterion. This project uses a **70% SoH threshold** for its demonstration workflow.
+
+### Heuristic recommendations
+
+Maintenance messages are application heuristics, not manufacturer service thresholds.
+
+### Confidence output
+
+The application's confidence/stability display should not be interpreted as a calibrated probability unless formal uncertainty calibration has been performed.
+
+---
+
+## 🧠 Technical Design Principles
+
+This project follows five core principles:
+
+1. **Modularity** — preprocessing, feature engineering, modeling, explanation and UI are separated.
+2. **Reproducibility** — model and preprocessing artifacts are persisted.
+3. **Interpretability** — predictions are accompanied by SHAP analysis.
+4. **Deployability** — the application can run locally or inside Docker.
+5. **Responsible ML** — limitations and dataset assumptions are explicitly documented.
+
+---
+
+## 📚 References
+
+1. NASA Prognostics Center of Excellence — battery aging resources.
+2. Lundberg, S. M. & Lee, S.-I. — *A Unified Approach to Interpreting Model Predictions*, NeurIPS 2017.
+3. Chen, T. & Guestrin, C. — *XGBoost: A Scalable Tree Boosting System*, KDD 2016.
+4. Ke, G. et al. — *LightGBM: A Highly Efficient Gradient Boosting Decision Tree*, NeurIPS 2017.
+5. scikit-learn documentation.
+6. Streamlit documentation.
+7. SHAP documentation.
+
+---
+
+## 📄 Project Documentation
+
+For the detailed technical methodology, mathematical formulations, feature definitions, model grids, evaluation tables and engineering discussion, see:
+
+**[Technical Project Report →](project_report.md)**
+
+---
+
+## 🔗 Useful Links
+
+- **Repository:** https://github.com/RITESH2127/-BATTERY-INTELLIGENCE-PLAYTFORM-2026-INTERSHIP-SWIFT-VOLT-VENTURES-
+- **Author GitHub:** https://github.com/RITESH2127
+- **SwiftVolt Ventures:** https://swiftvoltventures.com/
+- **License:** MIT
+
+---
+
+## 👤 Author
 
 <p align="center">
   <strong>Ritesh Kumar</strong><br/>
-  Computer Science Engineering
+  Computer Science Engineering<br/>
+  Battery Intelligence Platform
 </p>
 
 <p align="center">
-  <a href="https://github.com/RITESH2127">GitHub</a>
-  ·
-  <a href="https://github.com/RITESH2127/-BATTERY-INTELLIGENCE-PLAYTFORM-2026-INTERSHIP-SWIFT-VOLT-VENTURES-">Repository</a>
+  <sub>From battery telemetry to explainable intelligence.</sub>
 </p>
 
 ---
 
+## 📜 License
+
+This project is released under the **MIT License**.
+
+See [LICENSE](LICENSE) for the complete license text.
+
+---
+
 <p align="center">
-  <sub>From battery telemetry to actionable intelligence.</sub>
+  <strong>⚡ Battery Intelligence Platform</strong><br/>
+  <sub>Machine Learning • Explainable AI • EV Battery Prognostics • Deployment Engineering</sub>
 </p>

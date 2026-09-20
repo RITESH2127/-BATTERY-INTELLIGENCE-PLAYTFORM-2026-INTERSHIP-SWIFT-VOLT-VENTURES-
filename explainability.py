@@ -10,7 +10,7 @@ import pandas as pd
 import shap
 import plotly.graph_objects as go
 
-from src.model_evaluation import COLORS, _plotly_dark_layout
+from model_evaluation import COLORS, _plotly_dark_layout
 
 
 def compute_shap_values(model, X: pd.DataFrame) -> tuple:

@@ -16,7 +16,7 @@ from xgboost import XGBRegressor
 from lightgbm import LGBMRegressor
 from datetime import datetime
 
-from src.data_preprocessing import preprocess_pipeline
+from data_preprocessing import preprocess_pipeline
 
 
 # ---------- Model Configurations ---------- #
@@ -151,7 +151,7 @@ def train_all_models() -> dict:
 
     # Step 4: Save models
     models_dir = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "models"
+        os.path.dirname(os.path.abspath(__file__))
     )
     os.makedirs(models_dir, exist_ok=True)
 

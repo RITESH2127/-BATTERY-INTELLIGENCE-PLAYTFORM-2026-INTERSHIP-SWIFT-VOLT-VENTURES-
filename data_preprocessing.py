@@ -13,15 +13,14 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from datetime import datetime
 
-from src.feature_engineering import engineer_features, SOH_FEATURES, RUL_FEATURES, SOH_TARGET, RUL_TARGET
+from feature_engineering import engineer_features, SOH_FEATURES, RUL_FEATURES, SOH_TARGET, RUL_TARGET
 
 
 def load_data(data_path: str = None) -> pd.DataFrame:
     """Load battery cycling data from CSV."""
     if data_path is None:
         data_path = os.path.join(
-            os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-            "data", "battery_data.csv"
+            os.path.dirname(os.path.abspath(__file__))
         )
     if not os.path.exists(data_path):
         raise FileNotFoundError(
@@ -192,7 +191,7 @@ def preprocess_pipeline(test_size: float = 0.2, random_state: int = 42) -> dict:
 
     # Save report
     report_dir = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "reports"
+        os.path.dirname(os.path.abspath(__file__))
     )
     os.makedirs(report_dir, exist_ok=True)
     report_path = os.path.join(report_dir, "preprocessing_report.json")
