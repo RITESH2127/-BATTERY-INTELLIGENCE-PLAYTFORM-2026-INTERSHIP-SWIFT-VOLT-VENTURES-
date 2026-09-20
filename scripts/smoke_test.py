@@ -7,6 +7,7 @@ import pandas as pd
 
 from feature_engineering import engineer_features, SOH_FEATURES, RUL_FEATURES
 from utils import classify_risk, generate_fleet_data
+from app_paths import DATA_PATH, METADATA_PATH, model_path, artifact_path
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -22,7 +23,20 @@ def main() -> None:
     if missing:
         raise SystemExit(f"Missing required files: {missing}")
 
-    df = pd.read_csv(ROOT / "battery_data.csv")
+    expected_models = [
+        model_path("soh", "Gradient Boosting"),
+        model_path("rul", "LightGBM"),
+        artifact_path("soh_scaler.joblib"),
+        artifact_path("rul_scaler.joblib"),
+    ]
+    missing_models = [str(p) for p in expected_models if not p.is_file()]
+    if missing_models:
+        raise SystemExit(f"Missing required model artifacts: {missing_models}")
+
+    assert DATA_PATH.is_file()
+    assert METADATA_PATH.is_file()
+
+    df = pd.read_csv(DATA_PATH)
     engineered = engineer_features(df)
 
     assert len(engineered) == len(df)
