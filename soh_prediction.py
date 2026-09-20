@@ -13,12 +13,12 @@ import joblib
 import os
 import json
 
-from src.utils import (
+from utils import (
     classify_risk, get_risk_color, get_risk_icon, get_maintenance_recommendations,
     calculate_confidence, RISK_CSS_CLASSES,
 )
-from src.model_evaluation import COLORS, _plotly_dark_layout
-from src.feature_engineering import SOH_FEATURES
+from model_evaluation import COLORS, _plotly_dark_layout
+from feature_engineering import SOH_FEATURES
 
 
 def _create_soh_gauge(soh_value: float) -> go.Figure:
@@ -75,7 +75,7 @@ def _create_soh_gauge(soh_value: float) -> go.Figure:
 def _load_model_and_scaler():
     """Load the best SoH model and scaler from saved artifacts."""
     models_dir = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "models"
+        os.path.dirname(os.path.abspath(__file__)), "models"
     )
     metadata_path = os.path.join(models_dir, "model_metadata.json")
 
