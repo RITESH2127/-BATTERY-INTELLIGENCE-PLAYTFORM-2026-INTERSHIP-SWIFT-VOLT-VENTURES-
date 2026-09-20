@@ -151,7 +151,7 @@ def generate_battery_data(output_dir: str = None) -> pd.DataFrame:
         Combined dataset for all batteries.
     """
     if output_dir is None:
-        output_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
+        output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)))
 
     os.makedirs(output_dir, exist_ok=True)
 
