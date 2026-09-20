@@ -717,7 +717,15 @@ The repository retains:
 - `ritesh.pdf` — repository-provided credential/document artifact.
 - `project_report.md` — detailed technical implementation and performance report.
 
-For external professional verification, the author profile associated with this repository lists machine-learning and Python credentials alongside the SwiftVolt Ventures internship experience.
+The author's public professional profile currently lists the following credentials:
+
+| Credential | Issuer | Issued |
+|---|---|---|
+| Python Course | GeeksforGeeks | June 2026 |
+| AI Fluency for Students | Anthropic | March 2026 |
+| Machine Learning | GeeksforGeeks | January 2026 |
+| Machine Learning | GAIL (India) Limited | September 2025 |
+| SwiftVolt Ventures internship | SwiftVolt Ventures India Private Limited | 2026 |
 
 > Credential claims should always be verified against the issuing organization's credential record or the original certificate.
 
