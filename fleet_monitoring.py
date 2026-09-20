@@ -11,11 +11,11 @@ import plotly.express as px
 import numpy as np
 import pandas as pd
 
-from src.utils import (
+from utils import (
     generate_fleet_data, classify_risk, get_risk_color, get_risk_icon,
     get_maintenance_recommendations, RISK_COLORS,
 )
-from src.model_evaluation import COLORS, _plotly_dark_layout
+from model_evaluation import COLORS, _plotly_dark_layout
 
 
 def style_status(val):
