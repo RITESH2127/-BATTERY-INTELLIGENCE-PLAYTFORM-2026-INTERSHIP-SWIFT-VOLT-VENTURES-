@@ -20,42 +20,42 @@ from explainability import (
 )
 from model_evaluation import COLORS, _plotly_dark_layout
 from feature_engineering import SOH_FEATURES, RUL_FEATURES, engineer_features
+from app_paths import DATA_PATH, METADATA_PATH, artifact_path, model_path
 
 
 def _load_models_and_data():
-    """Load models, scalers, and test data for SHAP analysis."""
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    models_dir = os.path.join(base_dir, "models")
-    data_path = os.path.join(base_dir, "battery_data.csv")
-
-    if not os.path.exists(os.path.join(models_dir, "model_metadata.json")):
+    """Load persisted models, scalers, and the bundled dataset safely."""
+    if not METADATA_PATH.is_file() or not DATA_PATH.is_file():
         return None
 
-    with open(os.path.join(models_dir, "model_metadata.json"), "r") as f:
-        metadata = json.load(f)
+    try:
+        with METADATA_PATH.open("r", encoding="utf-8") as f:
+            metadata = json.load(f)
 
-    # Load best SoH model
-    soh_name = metadata["soh_best_model"].lower().replace(" ", "_")
-    soh_model = joblib.load(os.path.join(models_dir, f"soh_{soh_name}.joblib"))
-    soh_scaler = joblib.load(os.path.join(models_dir, "soh_scaler.joblib"))
+        soh_name = metadata.get("soh_best_model", "Gradient Boosting")
+        rul_name = metadata.get("rul_best_model", "LightGBM")
+        soh_model_path = model_path("soh", soh_name)
+        rul_model_path = model_path("rul", rul_name)
+        soh_scaler_path = artifact_path("soh_scaler.joblib")
+        rul_scaler_path = artifact_path("rul_scaler.joblib")
 
-    # Load best RUL model
-    rul_name = metadata["rul_best_model"].lower().replace(" ", "_")
-    rul_model = joblib.load(os.path.join(models_dir, f"rul_{rul_name}.joblib"))
-    rul_scaler = joblib.load(os.path.join(models_dir, "rul_scaler.joblib"))
+        required = [soh_model_path, rul_model_path, soh_scaler_path, rul_scaler_path]
+        if not all(path.is_file() for path in required):
+            return None
 
-    # Load and prepare data
-    df = pd.read_csv(data_path)
-    df = engineer_features(df)
+        df = pd.read_csv(DATA_PATH)
+        df = engineer_features(df)
 
-    return {
-        "soh_model": soh_model,
-        "rul_model": rul_model,
-        "soh_scaler": soh_scaler,
-        "rul_scaler": rul_scaler,
-        "data": df,
-        "metadata": metadata,
-    }
+        return {
+            "soh_model": joblib.load(soh_model_path),
+            "rul_model": joblib.load(rul_model_path),
+            "soh_scaler": joblib.load(soh_scaler_path),
+            "rul_scaler": joblib.load(rul_scaler_path),
+            "data": df,
+            "metadata": metadata,
+        }
+    except (OSError, ValueError, TypeError, KeyError, json.JSONDecodeError, pd.errors.ParserError):
+        return None
 
 
 def render():
@@ -69,7 +69,8 @@ def render():
 
     artifacts = _load_models_and_data()
     if artifacts is None:
-        st.warning("⚠️ Models not trained yet. Please run the training pipeline first.")
+        st.error("Explainable AI is unavailable because the required model artifacts or dataset are missing.")
+        st.code("python -m model_training", language="bash")
         return
 
     st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
