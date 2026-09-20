@@ -203,6 +203,8 @@ The repository intentionally keeps the existing application modules at the proje
 ├── scripts/                        # Run/train/smoke-test helpers
 ├── .github/workflows/ci.yml        # Continuous integration
 ├── project_report.md               # Detailed technical report
+├── MODEL_CARD.md                   # ML model card and risk/usage documentation
+├── CONTRIBUTING.md                 # Development and contribution workflow
 ├── ritesh.pdf                     # Repository-provided credential/document artifact
 └── LICENSE                         # MIT license
 ```
@@ -899,6 +901,8 @@ This project follows five core principles:
 For the detailed technical methodology, mathematical formulations, feature definitions, model grids, evaluation tables and engineering discussion, see:
 
 **[Technical Project Report →](project_report.md)**
+
+**[Model Card →](MODEL_CARD.md)** | **[Contribution Guide →](CONTRIBUTING.md)**
 
 ---
 
