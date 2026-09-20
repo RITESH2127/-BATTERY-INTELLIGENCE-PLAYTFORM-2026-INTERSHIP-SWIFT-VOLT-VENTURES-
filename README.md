@@ -20,7 +20,17 @@
 </p>
 
 <p align="center">
+  <a href="https://hc3gbqd52jpaghs25aj7vq.streamlit.app/">
+    <img src="https://img.shields.io/badge/Live%20Demo-Open%20Streamlit%20App-FF4B4B?logo=streamlit&logoColor=white" alt="Live Demo"/>
+  </a>
+</p>
+
+> **Live Demo:** https://hc3gbqd52jpaghs25aj7vq.streamlit.app/  
+> Try the deployed Battery Intelligence Platform directly in your browser.
+
+<p align="center">
   <a href="#overview">Overview</a> |
+  <a href="#live-demo">Live Demo</a> |
   <a href="#capabilities">Capabilities</a> |
   <a href="#architecture">Architecture</a> |
   <a href="#quick-start">Quick Start</a> |
@@ -76,6 +86,16 @@ This project demonstrates the complete path from telemetry to an interactive ML 
 |  Quality Automation | GitHub Actions + compile + smoke tests |
 |  Reproducible Setup | Constrained dependency major versions |
 |  Documentation | Technical report + engineering README |
+
+---
+
+## Live Demo
+
+The latest deployed Streamlit application is available here:
+
+**[Open Battery Intelligence Platform](https://hc3gbqd52jpaghs25aj7vq.streamlit.app/)**
+
+Use the live deployment to explore the six dashboard views without installing Python dependencies locally.
 
 ---
 
